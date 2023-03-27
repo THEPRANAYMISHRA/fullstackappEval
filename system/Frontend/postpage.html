@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="ft">fetch Data</button>
+    <div id="showposts">
+
+    </div>
+</body>
+</html>
+
+<script>
+    let fetchEl=document.getElementById("ft")
+
+    fetchEl.addEventListener("click",(e)=>{
+        // e.preventDefault()
+
+        fetch("http://localhost:8080/posts/")
+        .then(res=>res.json())
+        .then(res=>console.log(res)
+        )
+})
+</script>

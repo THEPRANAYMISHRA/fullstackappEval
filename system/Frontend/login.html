@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="loginform">
+        <input type="text" placeholder="email" id="Uemail">
+        <input type="text" placeholder="password" id="Upassword">
+        <button>Submit</button>
+    </form>
+</body>
+<script>
+
+let formEl=document.getElementById("loginform")
+
+formEl.addEventListener("submit",(e)=>{
+        e.preventDefault()
+        let emailEl=document.getElementById("Uemail")
+        let passEl=document.getElementById("Upassword")
+
+        const payload={
+            email:emailEl.value,
+            password:passEl.value,
+        }
+
+        fetch("http://localhost:8080/users/login",{
+            method:"POST",
+            headers:{
+            "Content-type":"application/json"
+            },
+            body:JSON.stringify(payload)
+        }).then(res=>res.json())
+        .then(res=>{
+            console.log(res)
+            localStorage.setItem("token",res.token)
+        })
+})
+</script>
+</html>

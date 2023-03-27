@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="signupform">
+        <input type="text" placeholder="name" id="Uname">
+        <input type="text" placeholder="email" id="Uemail">
+        <input type="text" placeholder="gender" id="Ugender">
+        <input type="text" placeholder="password" id="Upassword">
+        <input type="number" placeholder="age" id="Uage">
+        <input type="text" placeholder="city" id="Ucity">
+        <input type="text" placeholder="is_married" id="is_married">
+        <button>Submit</button>
+    </form>
+</body>
+<script>
+
+let formEl=document.getElementById("signupform")
+
+formEl.addEventListener("submit",(e)=>{
+        e.preventDefault()
+
+        let nameEl=document.getElementById("Uname")
+        let emailEl=document.getElementById("Uemail")
+        let genderEl=document.getElementById("Ugender")
+        let passEl=document.getElementById("Upassword")
+        let ageEl=document.getElementById("Uage")
+        let cityEl=document.getElementById("Ucity")
+        let marriageEl=document.getElementById("is_married")
+
+        const payload={
+            name:nameEl.value,
+            email:emailEl.value,
+            gender:genderEl.value,
+            password:passEl.value,
+            age:ageEl.value,
+            city:cityEl.value,
+            is_married:marriageEl.value
+        }
+
+        fetch("http://localhost:8080/users/register",{
+            method:"POST",
+            headers:{
+            "Content-type":"application/json"
+            },
+            body:JSON.stringify(payload)
+        }).then(res=>res.json())
+        .then(res=>console.log(res))
+})
+</script>
+</html>
